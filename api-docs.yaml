@@ -1,0 +1,305 @@
+openapi: 3.0.1
+info:
+  title: COVID-19 Spain REST API
+  description: Consulta los datos del COVID-19 en España.
+  termsOfService: http://swagger.io/terms/
+  license:
+    name: Apache 2.0
+    url: http://springdoc.org
+servers:
+- url: http://localhost:8080
+  description: Generated server url
+tags:
+- name: contact
+  description: the Contact API
+paths:
+  /admin/addData:
+    post:
+      tags:
+      - admin-controller
+      operationId: addData
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/DataCovid'
+        required: true
+      responses:
+        "200":
+          description: default response
+          content:
+            '*/*':
+              schema:
+                type: string
+  /info/ccaa:
+    get:
+      tags:
+      - contact
+      operationId: getInfoCovidByCcaa
+      parameters:
+      - name: codigo
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - AN
+          - AR
+          - AS
+          - IB
+          - CN
+          - CB
+          - CM
+          - CL
+          - CT
+          - CE
+          - VC
+          - EX
+          - GA
+          - MD
+          - ML
+          - MC
+          - NC
+          - PV
+          - RI
+      responses:
+        "200":
+          description: default response
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/InfoCovid'
+  /info/date:
+    get:
+      tags:
+      - contact
+      operationId: getInfoCovidByDate
+      parameters:
+      - name: fecha
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date
+      responses:
+        "200":
+          description: default response
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/InfoCovid'
+  /info/ccaa&date:
+    get:
+      tags:
+      - contact
+      operationId: getInfoCovidByDateAndCcaa
+      parameters:
+      - name: fecha
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date
+      - name: codigo
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - AN
+          - AR
+          - AS
+          - IB
+          - CN
+          - CB
+          - CM
+          - CL
+          - CT
+          - CE
+          - VC
+          - EX
+          - GA
+          - MD
+          - ML
+          - MC
+          - NC
+          - PV
+          - RI
+      responses:
+        "200":
+          description: default response
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/InfoCovid'
+  /info/es:
+    get:
+      tags:
+      - contact
+      operationId: getInfoCovid
+      responses:
+        "200":
+          description: default response
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/InfoCovid'
+  /info/:
+    get:
+      tags:
+      - contact
+      operationId: InfoCovid
+      responses:
+        "200":
+          description: default response
+          content:
+            '*/*':
+              schema:
+                type: string
+  /error:
+    get:
+      tags:
+      - custom-error
+      operationId: handleError
+      responses:
+        "200":
+          description: default response
+          content:
+            '*/*':
+              schema:
+                type: string
+    put:
+      tags:
+      - custom-error
+      operationId: handleError_4
+      responses:
+        "200":
+          description: default response
+          content:
+            '*/*':
+              schema:
+                type: string
+    post:
+      tags:
+      - custom-error
+      operationId: handleError_1
+      responses:
+        "200":
+          description: default response
+          content:
+            '*/*':
+              schema:
+                type: string
+    delete:
+      tags:
+      - custom-error
+      operationId: handleError_2
+      responses:
+        "200":
+          description: default response
+          content:
+            '*/*':
+              schema:
+                type: string
+    options:
+      tags:
+      - custom-error
+      operationId: handleError_5
+      responses:
+        "200":
+          description: default response
+          content:
+            '*/*':
+              schema:
+                type: string
+    head:
+      tags:
+      - custom-error
+      operationId: handleError_6
+      responses:
+        "200":
+          description: default response
+          content:
+            '*/*':
+              schema:
+                type: string
+    patch:
+      tags:
+      - custom-error
+      operationId: handleError_3
+      responses:
+        "200":
+          description: default response
+          content:
+            '*/*':
+              schema:
+                type: string
+components:
+  schemas:
+    DataCovid:
+      required:
+      - fecha
+      - region
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        region:
+          type: string
+        fecha:
+          type: string
+          format: date
+        hospitalizados:
+          type: integer
+          format: int32
+        fallecidos:
+          type: integer
+          format: int32
+        pcr:
+          type: integer
+          format: int32
+        casos:
+          type: integer
+          format: int32
+        testAc:
+          type: integer
+          format: int32
+        uci:
+          type: integer
+          format: int32
+        recuperados:
+          type: integer
+          format: int32
+    InfoCovid:
+      type: object
+      properties:
+        info:
+          type: string
+        totalCasos:
+          type: integer
+          format: int32
+        totalHospitalizados:
+          type: integer
+          format: int32
+        totalUCI:
+          type: integer
+          format: int32
+        totalPCR:
+          type: integer
+          format: int32
+        totalTest:
+          type: integer
+          format: int32
+        totalRecuperados:
+          type: integer
+          format: int32
+        totalFallecidos:
+          type: integer
+          format: int32
+        regions:
+          type: array
+          items:
+            $ref: '#/components/schemas/DataCovid'
