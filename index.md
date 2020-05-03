@@ -6,9 +6,9 @@
 
 La API permite realizar diferentes consultas, pudiendo obtener datos de una CCAA determinada o de una fecha concreta facilitando de esta forma su consumo para gráficos y visualizaciones.
 
-## Implementación :construction_worker:
+## Implementación  :construction_worker:
 
- - :writing_hand: **Java 8** 
+ -  **Java 8** :writing_hand:
  - :leaves: **Spring Boot** - Implementación servicios REST
  - :elephant: **PostgreSQL** - Base de datos
  - :arrow_right: **JSON** - Serialización de los datos
