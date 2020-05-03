@@ -3,4 +3,4 @@ logo: assets/img/celulas-virus.jpg
 description: API Rest COVID-19 en España.
 show_downloads: true
 google_analytics:
-theme: jekyll-theme-minimal
+theme: jekyll-theme-leap-day
