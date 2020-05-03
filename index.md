@@ -14,13 +14,13 @@ La API permite realizar diferentes consultas, pudiendo obtener datos de una CCAA
  - :arrow_right: **JSON** - Serialización de los datos
  - :six_pointed_star: **Heroku** - Depliegue
  
- 
- ## API :rocket:
+
+## API :rocket:
 Para acceder a la documentación del API:  https://covid-spain-api.herokuapp.com/swagger-ui.html
 
 #### Listado de las CCAA
 Para filtrar correctamente por CCAA se debe utilizar el [código ISO 3166-2](https://es.wikipedia.org/wiki/ISO_3166-2:ES) de la misma.
 
- 
- ## Contacto  :mailbox:
+
+## Contacto  :mailbox:
 Puedes escribirme frgar86@gmail.com para cualquier duda o sugerencia. 
