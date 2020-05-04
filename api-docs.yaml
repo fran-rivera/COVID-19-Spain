@@ -1,83 +1,112 @@
 openapi: 3.0.1
 info:
-  title: COVID-19 Spain REST API
-  description: Consulta los datos del COVID-19 en España.
+  title: COVID-19 REST API
+  description: "# Descripción\nConsulta todos los datos sobre el COVID-19 en España.\n\n#"
   termsOfService: http://swagger.io/terms/
+  contact:
+    name: Fran Rivera
+    url: https://fran-rivera.github.io/COVID-19-Spain
+    email: frgar86@gmail.com
   license:
     name: Apache 2.0
-    url: http://springdoc.org
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
 servers:
-- url: http://localhost:8080
-  description: Generated server url
+- url: https://covid-spain-api.herokuapp.com/
 tags:
-- name: contact
-  description: the Contact API
+- name: Info Covid CCAA
+  description: Datos del COVID-19 agrupados por CCAA
+  externalDocs:
+    description: Datos obtenidos del Ministerio de Sanidad
+    url: https://covid19.isciii.es/
 paths:
-  /admin/addData:
-    post:
+  /info/:
+    get:
       tags:
-      - admin-controller
-      operationId: addData
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/DataCovid'
-        required: true
+      - Info Covid CCAA
+      summary: Info de todos los días de todas las CCAA
+      description: Obtén los datos de todas las CCAA desde el inicio de la pandemia
+      operationId: findAll
       responses:
-        "200":
-          description: default response
+        200:
+          description: successful operation
           content:
-            '*/*':
+            application/json:
               schema:
-                type: string
+                type: array
+                items:
+                  $ref: '#/components/schemas/InfoCovid'
+        404:
+          description: Not found
+          content: {}
+        405:
+          description: Validation exception
+          content: {}
   /info/ccaa:
     get:
       tags:
-      - contact
-      operationId: getInfoCovidByCcaa
+      - Info Covid CCAA
+      summary: Datos de todos los dias de una CCAA
+      description: Obtén los datos de una CCAA desde el inicio de la pandemia
+      operationId: findByCCAA
       parameters:
       - name: codigo
         in: query
+        description: Código ISO 3166-2 de la CCAA para filtrar los resultados
         required: true
+        style: form
+        explode: true
         schema:
           type: string
+          default: AN
           enum:
-          - AN
-          - AR
-          - AS
-          - IB
-          - CN
-          - CB
-          - CM
-          - CL
-          - CT
-          - CE
-          - VC
-          - EX
-          - GA
-          - MD
-          - ML
-          - MC
-          - NC
-          - PV
-          - RI
+            - AN
+            - AR
+            - AS
+            - IB
+            - CN
+            - CB
+            - CM
+            - CL
+            - CT
+            - CE
+            - VC
+            - EX
+            - GA
+            - MD
+            - ML
+            - MC
+            - NC
+            - PV
+            - RI
       responses:
-        "200":
-          description: default response
+        200:
+          description: successful operation
           content:
-            '*/*':
+            application/json:
               schema:
-                $ref: '#/components/schemas/InfoCovid'
+                type: array
+                items:
+                  $ref: '#/components/schemas/InfoCovid'
+        400:
+          description: Invalid codigo value
+          content: {}
+        404:
+          description: Not found
+          content: {}
+        405:
+          description: Validation exception
+          content: {}
   /info/date:
     get:
       tags:
-      - contact
+      - Info Covid CCAA
+      summary: Datos de un solo día de todas las CCAA
+      description: Obtén los datos de una fecha concreta de todas las CCAA
       operationId: getInfoCovidByDate
       parameters:
       - name: fecha
+        description: Formato dd/MM/yyyy
         in: query
         required: true
         schema:
@@ -93,10 +122,13 @@ paths:
   /info/ccaa&date:
     get:
       tags:
-      - contact
+      - Info Covid CCAA
+      summary: Datos de un solo día de una CCAA
+      description: Obtén los datos de una fecha y una CCAA concreta
       operationId: getInfoCovidByDateAndCcaa
       parameters:
       - name: fecha
+        description: Formato dd/MM/yyyy
         in: query
         required: true
         schema:
@@ -134,108 +166,6 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/InfoCovid'
-  /info/es:
-    get:
-      tags:
-      - contact
-      operationId: getInfoCovid
-      responses:
-        "200":
-          description: default response
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/InfoCovid'
-  /info/:
-    get:
-      tags:
-      - contact
-      operationId: InfoCovid
-      responses:
-        "200":
-          description: default response
-          content:
-            '*/*':
-              schema:
-                type: string
-  /error:
-    get:
-      tags:
-      - custom-error
-      operationId: handleError
-      responses:
-        "200":
-          description: default response
-          content:
-            '*/*':
-              schema:
-                type: string
-    put:
-      tags:
-      - custom-error
-      operationId: handleError_4
-      responses:
-        "200":
-          description: default response
-          content:
-            '*/*':
-              schema:
-                type: string
-    post:
-      tags:
-      - custom-error
-      operationId: handleError_1
-      responses:
-        "200":
-          description: default response
-          content:
-            '*/*':
-              schema:
-                type: string
-    delete:
-      tags:
-      - custom-error
-      operationId: handleError_2
-      responses:
-        "200":
-          description: default response
-          content:
-            '*/*':
-              schema:
-                type: string
-    options:
-      tags:
-      - custom-error
-      operationId: handleError_5
-      responses:
-        "200":
-          description: default response
-          content:
-            '*/*':
-              schema:
-                type: string
-    head:
-      tags:
-      - custom-error
-      operationId: handleError_6
-      responses:
-        "200":
-          description: default response
-          content:
-            '*/*':
-              schema:
-                type: string
-    patch:
-      tags:
-      - custom-error
-      operationId: handleError_3
-      responses:
-        "200":
-          description: default response
-          content:
-            '*/*':
-              schema:
-                type: string
 components:
   schemas:
     DataCovid:
@@ -252,6 +182,8 @@ components:
         fecha:
           type: string
           format: date
+          description: formato dd/MM/yyyy
+          example: 20/03/2020
         hospitalizados:
           type: integer
           format: int32
