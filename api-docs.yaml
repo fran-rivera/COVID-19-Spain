@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: COVID-19 REST API
-  description: "# Descripción\nConsulta todos los datos sobre el COVID-19 en España.\n\n"
+  description: "# Descripción\nConsulta todos los datos sobre el COVID-19 en España.\n\n "
   termsOfService: http://swagger.io/terms/
   contact:
     name: Fran Rivera
