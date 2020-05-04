@@ -6,21 +6,20 @@
 
 La API permite realizar diferentes consultas, pudiendo obtener datos de una CCAA determinada o de una fecha concreta facilitando de esta forma su consumo para gráficos y visualizaciones.
 
-## Implementación :construction_worker:
-
-- :writing_hand: **Java 8** 
-- :leaves: **Spring Boot** - Implementación servicios REST
-- :elephant: **PostgreSQL** - Base de datos
-- :arrow_right: **JSON** - Serialización de los datos
-- :six_pointed_star: **Heroku** - Depliegue
+## Implementación 
+- **Java 8** 
+- **Spring Boot** - Implementación servicios REST
+- **PostgreSQL** - Base de datos
+- **JSON** - Serialización de los datos
+- **Heroku** - Depliegue
  
 
-## API :rocket:
+## API
 Para acceder a la documentación del API:  https://covid-spain-api.herokuapp.com/swagger-ui.html
 
 #### Listado de las CCAA
 Para filtrar correctamente por CCAA se debe utilizar el [código ISO 3166-2](https://es.wikipedia.org/wiki/ISO_3166-2:ES) de la misma.
 
 
-## Contacto  :mailbox:
+## Contacto
 Puedes escribirme frgar86@gmail.com para cualquier duda o sugerencia. 
