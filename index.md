@@ -11,6 +11,7 @@ La API permite realizar diferentes consultas, pudiendo obtener datos de una CCAA
 - **Spring Boot** - Implementación servicios REST
 - **PostgreSQL** - Base de datos
 - **JSON** - Serialización de los datos
+- **OpenAPI 3.0 (OAS 3.0)** - Documentación API
 - **Heroku** - Depliegue
  
 
